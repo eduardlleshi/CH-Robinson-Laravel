@@ -2,11 +2,11 @@
 
 require_once __DIR__ . '/../config/bootstrap.php';
 
-use CHRobinson\Shipments\AvailableShipmentSearch;
+use CHRobinson\Shipments\MilestoneUpdates;
 use CHRobinson\Core\CHRobinsonHttpClient;
 use CHRobinson\Core\SandboxEnvironment;
 
-$request = new AvailableShipmentSearch;
+$request = new MilestoneUpdates;
 $request->body = [
     'carrierCode' => 'T142351'
 ];

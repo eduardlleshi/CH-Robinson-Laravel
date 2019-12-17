@@ -8,9 +8,7 @@ class Curl
 
     public function __construct($curl = NULL)
     {
-
-        if (is_null($curl))
-        {
+        if (is_null($curl)) {
             $curl = curl_init();
         }
         $this->curl = $curl;

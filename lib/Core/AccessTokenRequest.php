@@ -6,22 +6,16 @@ use CHRobinson\Http\HttpRequest;
 
 class AccessTokenRequest extends HttpRequest
 {
-    public function __construct(CHRobinsonEnvironment $environment, $refreshToken = NULL)
+    public function __construct(CHRobinsonEnvironment $environment)
     {
-        parent::__construct("/v1/oauth2/token", "POST");
-        $this->headers["Authorization"] = "Basic " . $environment->authorizationString();
+        parent::__construct('/v1/oauth/token', 'POST');
         $body = [
-            "grant_type" => "client_credentials"
+            'grant_type' => 'client_credentials',
+            'audience' => 'https://inavisphere.chrobinson.com',
+            'client_id' => $environment->getClientId(),
+            'client_secret' => $environment->getClientSecret()
         ];
-
-        if (!is_null($refreshToken))
-        {
-            $body["grant_type"] = "refresh_token";
-            $body["refresh_token"] = $refreshToken;
-        }
-
         $this->body = $body;
-        $this->headers["Content-Type"] = "application/x-www-form-urlencoded";
+        $this->headers['Content-Type'] = 'application/json';
     }
 }
-

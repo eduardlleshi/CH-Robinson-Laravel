@@ -15,9 +15,13 @@ abstract class CHRobinsonEnvironment implements Environment
         $this->clientSecret = $clientSecret;
     }
 
-    public function authorizationString()
+    public function getClientId(): string
     {
-        return base64_encode($this->clientId . ":" . $this->clientSecret);
+        return $this->clientId;
+    }
+
+    public function getClientSecret(): string
+    {
+        return $this->clientSecret;
     }
 }
-

@@ -9,7 +9,7 @@ class HttpRequest
     public $verb;
     public $headers = [];
 
-    function __construct($path, $verb)
+    function __construct(string $path, string $verb)
     {
         $this->path = $path;
         $this->verb = $verb;

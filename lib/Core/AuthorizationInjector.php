@@ -22,10 +22,8 @@ class AuthorizationInjector implements Injector
 
     public function inject($request)
     {
-        if (!$this->hasAuthHeader($request) && !$this->isAuthRequest($request))
-        {
-            if (is_null($this->accessToken) || $this->accessToken->isExpired())
-            {
+        if (!$this->hasAuthHeader($request) && !$this->isAuthRequest($request)) {
+            if (is_null($this->accessToken) || $this->accessToken->isExpired()) {
                 $this->accessToken = $this->fetchAccessToken();
             }
             $request->headers['Authorization'] = 'Bearer ' . $this->accessToken->token;
@@ -34,14 +32,34 @@ class AuthorizationInjector implements Injector
 
     private function fetchAccessToken()
     {
+        $accessTokenFile = __DIR__ . '/../access-token.json';
+
+        if (file_exists($accessTokenFile)) {
+            $accessToken = json_decode(file_get_contents($accessTokenFile));
+            $accessToken = new AccessToken($accessToken->access_token, $accessToken->token_type, $accessToken->expires_in);
+            if ($accessToken->isExpired()) {
+                unlink($accessTokenFile);
+            } else {
+                return $accessToken;
+            }
+        }
+
         $accessTokenResponse = $this->client->execute(new AccessTokenRequest($this->environment, $this->refreshToken));
         $accessToken = $accessTokenResponse->result;
+
+        $jsonData = [
+            'access_token' => $accessToken->access_token,
+            'token_type' => $accessToken->token_type,
+            'expires_in' => $accessToken->expires_in
+        ];
+        file_put_contents($accessTokenFile, json_encode($jsonData));
+
         return new AccessToken($accessToken->access_token, $accessToken->token_type, $accessToken->expires_in);
     }
 
     private function isAuthRequest($request)
     {
-        return $request instanceof AccessTokenRequest || $request instanceof RefreshTokenRequest;
+        return $request instanceof AccessTokenRequest;
     }
 
     private function hasAuthHeader(HttpRequest $request)

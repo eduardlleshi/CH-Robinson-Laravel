@@ -1,3 +1,4 @@
 vendor/
 samples/config/.env
 composer.lock
+lib/access-token.json
