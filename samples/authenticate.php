@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . '/bootstrap.php';
+require_once __DIR__ . '/config/bootstrap.php';
 
 use CHRobinson\CHRobinsonAPI;
 use CHRobinson\Environment\SandboxEnvironment;
