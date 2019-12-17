@@ -9,7 +9,7 @@ class SandboxEnvironment extends CHRobinsonEnvironment
         parent::__construct($clientId, $clientSecret);
     }
 
-    public function baseUrl()
+    public function baseUrl(): string
     {
         return "https://sandbox-api.navisphere.com";
     }

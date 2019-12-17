@@ -9,7 +9,7 @@ class ProductionEnvironment extends CHRobinsonEnvironment
         parent::__construct($clientId, $clientSecret);
     }
 
-    public function baseUrl()
+    public function baseUrl(): string
     {
         return "https://api.navisphere.com";
     }

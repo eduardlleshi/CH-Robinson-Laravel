@@ -19,7 +19,7 @@ class CHRobinsonHttpClient extends HttpClient
         $this->addInjector(new FPTIInstrumentationInjector());
     }
 
-    public function userAgent()
+    public function userAgent(): string
     {
         return UserAgent::getValue();
     }
