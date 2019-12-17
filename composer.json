@@ -1,12 +1,16 @@
 {
 	"name": "truckhub/ch-robinson-php-sdk",
+	"description": "PHP SDK for C.H. Robinson API",
+	"keywords": ["truckhub", "ch robinson", "sdk"],
 	"type": "library",
     "autoload": {
     	"psr-4": {
-    		"CHRobinson\\": "src/"
+    		"CHRobinson\\": "lib/"
     	}
     },
     "require-dev": {
-        "symfony/var-dumper": "^4.1"
+        "symfony/var-dumper": "^4.1",
+		"phpunit/phpunit": "^8.4",
+		"vlucas/phpdotenv": "^4.1"
     }
 }
