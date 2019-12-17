@@ -32,11 +32,18 @@ class AuthorizationInjector implements Injector
 
     private function fetchAccessToken()
     {
-        $accessTokenFile = __DIR__ . '/../access-token.json';
+        $accessTokenFile = __DIR__ . '/../' . ($this->environment instanceof SandboxEnvironment ?
+            'sandbox-access-token.json' :
+            'production-access-token.json');
 
         if (file_exists($accessTokenFile)) {
             $accessToken = json_decode(file_get_contents($accessTokenFile));
-            $accessToken = new AccessToken($accessToken->access_token, $accessToken->token_type, $accessToken->expires_in);
+            $accessToken = new AccessToken(
+                $accessToken->access_token,
+                $accessToken->token_type,
+                $accessToken->expires_in,
+                $accessToken->create_time
+            );
             if ($accessToken->isExpired()) {
                 unlink($accessTokenFile);
             } else {
@@ -50,7 +57,8 @@ class AuthorizationInjector implements Injector
         $jsonData = [
             'access_token' => $accessToken->access_token,
             'token_type' => $accessToken->token_type,
-            'expires_in' => $accessToken->expires_in
+            'expires_in' => $accessToken->expires_in,
+            'create_time' => time()
         ];
         file_put_contents($accessTokenFile, json_encode($jsonData));
 
