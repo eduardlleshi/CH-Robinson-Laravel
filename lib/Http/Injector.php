@@ -2,7 +2,7 @@
 
 namespace CHRobinson\Http;
 
-interface InjectorInterface
+interface Injector
 {
     public function inject($httpRequest);
 }
