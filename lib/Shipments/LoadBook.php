@@ -1,6 +1,6 @@
 <?php
 
-namespace CHRobinson\Visibility;
+namespace CHRobinson\Shipments;
 
 use CHRobinson\Http\HttpRequest;
 
