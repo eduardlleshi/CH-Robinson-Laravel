@@ -7,9 +7,6 @@ use CHRobinson\Core\CHRobinsonHttpClient;
 use CHRobinson\Core\SandboxEnvironment;
 
 $request = new AvailableShipmentSearch;
-$request->body = [
-    'carrierCode' => 'T142351'
-];
 
 $client = new CHRobinsonHttpClient(new SandboxEnvironment(
     getenv('SANDBOX_CLIENT_ID'),

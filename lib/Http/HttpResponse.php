@@ -20,6 +20,11 @@ class HttpResponse
         $this->statusCode = $statusCode;
     }
 
+    public function getStatusCode(): int
+    {
+        return (int) $this->statusCode;
+    }
+
     public function setResult($result)
     {
         if (is_array($result) || is_string($result)) {
