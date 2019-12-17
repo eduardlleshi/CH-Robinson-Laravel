@@ -1,16 +1,16 @@
 <?php
 
-namespace PayPalHttp\Serializer;
+namespace CHRobinson\Http\Serializer;
 
 use finfo;
-use PayPalHttp\HttpRequest;
-use PayPalHttp\Serializer;
-use PayPalHttp\Encoder;
-use PayPalHttp\Serializer\FormPart;
+use CHRobinson\Http\HttpRequest;
+use CHRobinson\Http\Serializer;
+use CHRobinson\Http\Encoder;
+use CHRobinson\Http\Serializer\FormPart;
 
 /**
  * Class Multipart
- * @package PayPalHttp\Serializer
+ * @package CHRobinson\Http\Serializer
  *
  * Serializer for multipart.
  */

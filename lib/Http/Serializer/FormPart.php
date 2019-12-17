@@ -1,6 +1,6 @@
 <?php
 
-namespace PayPalHttp\Serializer;
+namespace CHRobinson\Http\Serializer;
 
 class FormPart
 {

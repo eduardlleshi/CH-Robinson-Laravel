@@ -1,9 +1,9 @@
 <?php
 
-namespace PayPalHttp\Serializer;
+namespace CHRobinson\Http\Serializer;
 
-use PayPalHttp\HttpRequest;
-use PayPalHttp\Serializer;
+use CHRobinson\Http\HttpRequest;
+use CHRobinson\Http\Serializer;
 
 class Form implements Serializer
 {

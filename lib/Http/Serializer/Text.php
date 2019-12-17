@@ -1,13 +1,13 @@
 <?php
 
-namespace PayPalHttp\Serializer;
+namespace CHRobinson\Http\Serializer;
 
-use PayPalHttp\HttpRequest;
-use PayPalHttp\Serializer;
+use CHRobinson\Http\HttpRequest;
+use CHRobinson\Http\Serializer;
 
 /**
  * Class Text
- * @package PayPalHttp\Serializer
+ * @package CHRobinson\Http\Serializer
  *
  * Serializer for Text content types.
  */

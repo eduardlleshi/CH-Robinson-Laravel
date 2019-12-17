@@ -1,13 +1,13 @@
 <?php
 
-namespace PayPalHttp\Serializer;
+namespace CHRobinson\Http\Serializer;
 
-use PayPalHttp\HttpRequest;
-use PayPalHttp\Serializer;
+use CHRobinson\Http\HttpRequest;
+use CHRobinson\Http\Serializer;
 
 /**
  * Class Json
- * @package PayPalHttp\Serializer
+ * @package CHRobinson\Http\Serializer
  *
  * Serializer for JSON content types.
  */
