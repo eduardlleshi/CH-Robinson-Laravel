@@ -1,0 +1,12 @@
+{
+	"name": "truckhub/ch-robinson-php-sdk",
+	"type": "library",
+    "autoload": {
+    	"psr-4": {
+    		"CHRobinson\\": "src/"
+    	}
+    },
+    "require-dev": {
+        "symfony/var-dumper": "^4.1"
+    }
+}
