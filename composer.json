@@ -1,4 +1,12 @@
 {
+    "author": [
+        {
+            "name": "MyTruckHub",
+            "email": "admin@truckhub.io",
+            "homepage": "https://mytruckhub.com/",
+            "role": "Developer"
+        }
+    ],
 	"name": "truckhub/ch-robinson-php-sdk",
 	"description": "PHP SDK for C.H. Robinson API",
 	"keywords": ["truckhub", "ch robinson", "sdk"],
