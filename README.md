@@ -15,34 +15,50 @@ PHP 7 and above
 Obtain your Sandbox Client ID and Client Secret from C.H Robinson.
 
 ```php
-// Construct a request object and set desired parameters
-// Here, OrdersCreateRequest() creates a POST request to /v2/checkout/orders
-use PayPalCheckoutSdk\Orders\OrdersCreateRequest;
-$request = new OrdersCreateRequest();
-$request->prefer('return=representation');
-$request->body = [
-                     "intent" => "CAPTURE",
-                     "purchase_units" => [[
-                         "reference_id" => "test_ref_id1",
-                         "amount" => [
-                             "value" => "100.00",
-                             "currency_code" => "USD"
-                         ]
-                     ]],
-                     "application_context" => [
-                          "cancel_url" => "https://example.com/cancel",
-                          "return_url" => "https://example.com/return"
-                     ] 
-                 ];
 
-try {
-    // Call API with your client and get a response for your call
-    $response = $client->execute($request);
-    
-    // If call returns body in response, you can get the deserialized version from the result attribute of the response
-    print_r($response);
-}catch (HttpException $ex) {
-    echo $ex->statusCode;
-    print_r($ex->getMessage());
+use CHRobinson\Core\CHRobinsonHttpClient;
+use CHRobinson\Core\SandboxEnvironment;
+
+$client = new CHRobinsonHttpClient(new SandboxEnvironment(
+    getenv('SANDBOX_CLIENT_ID'),
+    getenv('SANDBOX_CLIENT_SECRET')
+));
+
+```
+
+## Examples
+
+### Sending a Milestone update with the Shipments API
+
+```php
+
+use CHRobinson\Shipments\MilestoneUpdates;
+
+$request = new MilestoneUpdates;
+$request->body = [
+    'eventCode' => 'X6',
+    'shipmentIdentifier' => [
+        'shipmentNumber' => '123456789'
+    ],
+    'dateTime' => [
+        'eventDateTime' => '2019-12-16T18:36:13.131Z'
+    ],
+    'location' => [
+        'address' => [
+            'address1' => 'address if known, or blank',
+            'city' => 'state if known, or blank',
+            'stateProvinceCode' => 'state if known, or blank',
+            'country' => 'US',
+            'latitude' => '31.717096',
+            'longitude' => '-99.132553'
+        ]
+    ]
+];
+
+$response = $client->execute($request);
+
+if ($response->getStatusCode() == 201) {
+    echo 'Success';
 }
+
 ```
