@@ -10,6 +10,12 @@ PHP 7 and above
 
 ## Usage
 
+### Install
+
+```bash
+composer require truckhub/ch-robinson-php-sdk
+```
+
 ### Setting up credentials
 
 Obtain your Sandbox Client ID and Client Secret from C.H Robinson.
