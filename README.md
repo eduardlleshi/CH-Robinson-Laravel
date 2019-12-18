@@ -1,4 +1,4 @@
-# CH Robinson PHP SDK by TruckHub Team
+# CH Robinson PHP SDK
 
 ![Image description](https://github.com/mytruckhub/CH-Robinson-PHP-SDK/blob/master/CHRobinson-Banner.jpg)
 
