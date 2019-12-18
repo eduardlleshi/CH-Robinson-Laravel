@@ -20,5 +20,8 @@
         "symfony/var-dumper": "^4.1",
 		"phpunit/phpunit": "^8.4",
 		"vlucas/phpdotenv": "^4.1"
+    },
+    "require": {
+        "ext-curl": "*"
     }
 }
