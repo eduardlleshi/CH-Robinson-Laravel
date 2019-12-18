@@ -2,7 +2,7 @@
 
 ![Image description](https://github.com/mytruckhub/CH-Robinson-PHP-SDK/blob/master/CHRobinson-Banner.jpg)
 
-This repository contains the C.H Robinson SDK and samples for the Shipments API. It includes a simplified interface to only provide simple model objects and blueprints for HTTP calls. Refer to the [C.H Robinson Developer portal](https://www.google.com) for more information.
+This repository contains the C.H Robinson SDK and samples for the Shipments API. It includes a simplified interface to only provide simple model objects and blueprints for HTTP calls. Refer to the [C.H Robinson Developer](https://www.google.com) portal for more information.
 
 ## Prerequisites
 
