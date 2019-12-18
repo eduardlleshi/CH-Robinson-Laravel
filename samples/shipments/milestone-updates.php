@@ -17,16 +17,6 @@ $request->body = [
     ],
     'location' => [
         'type' > 'drop',
-        /**
-         * Identifies the stop number the milestone is associated to. If location is for a 
-         * milestone that isn't tied to a stop then this field should be set to null.
-         */
-        //'stopSequenceNumber' => 2,
-        /**
-         * Identifies the sequence number the milestone is associated to. If location is for a milestone 
-         * that isn't tied to a stop then this field should be set to null.
-         */
-        //'sequenceNumber' => 1,
         'address' => [
             'address1' => 'address if known, or blank',
             'city' => 'state if known, or blank',
