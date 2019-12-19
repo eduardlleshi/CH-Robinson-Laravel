@@ -5,6 +5,7 @@ require_once __DIR__ . '/../config/bootstrap.php';
 use CHRobinson\Shipments\MilestoneUpdates;
 use CHRobinson\Core\CHRobinsonHttpClient;
 use CHRobinson\Core\SandboxEnvironment;
+use CHRobinson\Http\HttpException;
 
 $request = new MilestoneUpdates;
 $request->body = [
@@ -13,17 +14,17 @@ $request->body = [
         'shipmentNumber' => '123456789'
     ],
     'dateTime' => [
-        'eventDateTime' => '2019-12-16T18:36:13.131Z'
+        'eventDateTime' => '2019-12-19T18:36:13.131Z'
     ],
     'location' => [
-        'type' > 'drop',
+        'type' => 'drop',
         'address' => [
-            'address1' => 'address if known, or blank',
-            'city' => 'state if known, or blank',
-            'stateProvinceCode' => 'state if known, or blank',
+            'address1' => '1015 North America Way',
+            'city' => 'Miami',
+            'stateProvinceCode' => 'FL',
             'country' => 'US',
-            'latitude' => '31.717096',
-            'longitude' => '-99.132553'
+            'latitude' => '25.7788029',
+            'longitude' => '-80.1779935'
         ]
     ]
 ];
@@ -33,7 +34,15 @@ $client = new CHRobinsonHttpClient(new SandboxEnvironment(
     getenv('SANDBOX_CLIENT_SECRET')
 ));
 
-$response = $client->execute($request);
+try {
+    $response = $client->execute($request);
+} catch(\Exception $e) {
+    dump([
+        'statusCode' => $e->getStatusCode(),
+        'message' => $e->getMessage()
+    ]);
+    die();
+}
 
 if ($response->getStatusCode() == 201) {
     echo 'Success';

@@ -13,4 +13,9 @@ class HttpException extends IOException
         $this->statusCode = $statusCode;
         $this->headers = $headers;
     }
+
+    public function getStatusCode()
+    {
+        return $this->statusCode;
+    }
 }
