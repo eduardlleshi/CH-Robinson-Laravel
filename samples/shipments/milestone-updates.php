@@ -5,6 +5,7 @@ require_once __DIR__ . '/../config/bootstrap.php';
 use CHRobinson\Shipments\MilestoneUpdates;
 use CHRobinson\Core\CHRobinsonHttpClient;
 use CHRobinson\Core\SandboxEnvironment;
+use CHRobinson\Core\ProductionEnvironment;
 use CHRobinson\Http\HttpException;
 
 $request = new MilestoneUpdates;
@@ -29,10 +30,15 @@ $request->body = [
     ]
 ];
 
-$client = new CHRobinsonHttpClient(new SandboxEnvironment(
-    getenv('SANDBOX_CLIENT_ID'),
-    getenv('SANDBOX_CLIENT_SECRET')
-));
+$client = (bool) getenv('DEV_MODE') ?
+    new CHRobinsonHttpClient(new SandboxEnvironment(
+        getenv('SANDBOX_CLIENT_ID'),
+        getenv('SANDBOX_CLIENT_SECRET')
+    )) :
+    new CHRobinsonHttpClient(new ProductionEnvironment(
+        getenv('CLIENT_ID'),
+        getenv('CLIENT_SECRET')
+    ));
 
 try {
     $response = $client->execute($request);
