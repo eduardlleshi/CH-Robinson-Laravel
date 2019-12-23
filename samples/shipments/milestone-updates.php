@@ -11,9 +11,9 @@ use CHRobinson\Http\HttpException;
 $request = new MilestoneUpdates;
 $request->body = [
     'eventCode' => 'X6',
-    'shipmentIdentifier' => [
+    /*'shipmentIdentifier' => [
         'shipmentNumber' => '123456789'
-    ],
+    ],*/
     'dateTime' => [
         'eventDateTime' => '2019-12-19T18:36:13.131Z'
     ],
