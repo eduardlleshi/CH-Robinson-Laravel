@@ -1,25 +1,21 @@
 {
-    "author": [
-        {
-            "name": "MyTruckHub",
-            "email": "admin@truckhub.io",
-            "homepage": "https://mytruckhub.com/",
-            "role": "Developer"
-        }
+    "name": "eduardlleshi/ch-robinson-laravel",
+    "license": "",
+    "description": "PHP SDK for C.H. Robinson API",
+    "keywords": [
+        "ch robinson",
+        "sdk"
     ],
-	"name": "truckhub/ch-robinson-php-sdk",
-	"description": "PHP SDK for C.H. Robinson API",
-	"keywords": ["truckhub", "ch robinson", "sdk"],
-	"type": "library",
+    "type": "library",
     "autoload": {
-    	"psr-4": {
-    		"CHRobinson\\": "lib/"
-    	}
+        "psr-4": {
+            "CHRobinson\\": "lib/"
+        }
     },
     "require-dev": {
         "symfony/var-dumper": "^4.1",
-		"phpunit/phpunit": "^8.4",
-		"vlucas/phpdotenv": "^4.1"
+        "phpunit/phpunit": "^8.4",
+        "vlucas/phpdotenv": "^4.1"
     },
     "require": {
         "ext-curl": "*"
