@@ -1,14 +1,14 @@
 <?php
 
-namespace CHRobinson\Shipments;
+namespace CHRobinson\Endpoints;
 
 use CHRobinson\Http\HttpRequest;
 
-class MilestoneUpdates extends HttpRequest
+class Rate extends HttpRequest
 {
     public function __construct()
     {
-        parent::__construct('/v1/shipments/milestones?', 'POST');
+        parent::__construct('/v1/quotes', 'POST');
         $this->headers['Content-Type'] = 'application/json';
     }
 }

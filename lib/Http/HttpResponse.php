@@ -5,7 +5,9 @@ namespace CHRobinson\Http;
 class HttpResponse
 {
     public $statusCode;
+
     public $result;
+
     public $headers;
 
     public function __construct($statusCode, $body, $headers)
@@ -35,5 +37,15 @@ class HttpResponse
     public function setHeaders(array $headers)
     {
         $this->headers = $headers;
+    }
+
+    public function getBody()
+    {
+        return $this->result;
+    }
+
+    public function isSuccess()
+    {
+        return $this->getStatusCode() == 200 || $this->getStatusCode() == 201;
     }
 }

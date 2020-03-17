@@ -2,15 +2,19 @@
 
 namespace CHRobinson\Core;
 
+use Cache;
+use CHRobinson\Http\HttpClient;
 use CHRobinson\Http\HttpRequest;
 use CHRobinson\Http\Injector;
-use CHRobinson\Http\HttpClient;
 
 class AuthorizationInjector implements Injector
 {
     private $client;
+
     private $environment;
+
     private $refreshToken;
+
     public $accessToken;
 
     public function __construct(HttpClient $client, CHRobinsonEnvironment $environment, $refreshToken)
@@ -22,31 +26,29 @@ class AuthorizationInjector implements Injector
 
     public function inject($request)
     {
-        if (!$this->hasAuthHeader($request) && !$this->isAuthRequest($request)) {
+        if (! $this->hasAuthHeader($request) && ! $this->isAuthRequest($request)) {
             if (is_null($this->accessToken) || $this->accessToken->isExpired()) {
                 $this->accessToken = $this->fetchAccessToken();
             }
-            $request->headers['Authorization'] = 'Bearer ' . $this->accessToken->token;
+            $request->headers['Authorization'] = 'Bearer '.$this->accessToken->token;
         }
     }
 
     private function fetchAccessToken()
     {
-        $accessTokenFile = __DIR__ . '/../' . ($this->environment instanceof SandboxEnvironment ?
-            'sandbox-access-token.json' :
-            'production-access-token.json');
+        $key = $this->environment instanceof SandboxEnvironment ? 'sandbox-access-token' : 'production-access-token';
 
-        if (file_exists($accessTokenFile)) {
-            $accessToken = json_decode(file_get_contents($accessTokenFile));
+        $cached_token = Cache::get($key, false);
+
+        if ($cached_token) {
             $accessToken = new AccessToken(
-                $accessToken->access_token,
-                $accessToken->token_type,
-                $accessToken->expires_in,
-                $accessToken->create_time
+                $cached_token->access_token,
+                $cached_token->token_type,
+                $cached_token->expires_in,
+                $cached_token->create_time
             );
-            if ($accessToken->isExpired()) {
-                unlink($accessTokenFile);
-            } else {
+
+            if (! $accessToken->isExpired()) {
                 return $accessToken;
             }
         }
@@ -58,9 +60,10 @@ class AuthorizationInjector implements Injector
             'access_token' => $accessToken->access_token,
             'token_type' => $accessToken->token_type,
             'expires_in' => $accessToken->expires_in,
-            'create_time' => time()
+            'create_time' => time(),
         ];
-        file_put_contents($accessTokenFile, json_encode($jsonData));
+
+        Cache::put($key, (object) $jsonData);
 
         return new AccessToken($accessToken->access_token, $accessToken->token_type, $accessToken->expires_in);
     }
