@@ -1,6 +1,6 @@
 {
     "name": "eduardlleshi/ch-robinson-laravel",
-    "license": "",
+    "license": "MIT",
     "description": "PHP SDK for C.H. Robinson API",
     "keywords": [
         "ch robinson",
