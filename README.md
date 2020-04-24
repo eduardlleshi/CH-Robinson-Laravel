@@ -68,3 +68,13 @@ if ($response->getStatusCode() == 201) {
 }
 
 ```
+
+To work locally with the package (package development)
+```
+"repositories": [
+    {
+        "type": "path",
+        "url": "chrobinson"
+    }
+],
+```
